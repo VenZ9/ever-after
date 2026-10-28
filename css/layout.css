@@ -52,19 +52,15 @@ h1{margin:0;font-size:34px;line-height:1.15;font-weight:900;letter-spacing:-.8px
   display:grid;place-items:center;padding:12px;
 }
 .qr-wrap img,.qr-wrap canvas{display:block;max-width:100%;height:auto}
+
 .code-display{
-  font-family:'Nunito',monospace;font-size:14px;font-weight:900;
-  letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);
+  font-family:'Nunito',monospace;font-size:32px;font-weight:900;
+  letter-spacing:8px;text-transform:uppercase;color:var(--accent);
   background:var(--accent-soft);border:2px solid var(--border);
-  border-radius:14px;padding:12px 16px;margin:0 0 16px;
-  word-break:break-word;line-height:1.5;
+  border-radius:16px;padding:14px 20px;margin:0 auto 24px;
+  width:fit-content;line-height:1.2;
 }
-.link-row{display:flex;gap:10px;margin-bottom:20px}
-.link-input{
-  flex:1;min-width:0;font-family:inherit;font-size:13px;font-weight:700;
-  padding:13px 15px;border-radius:14px;border:2px solid var(--border);
-  background:var(--surface-2);color:var(--muted);outline:none;
-}
+
 .waiting-row{
   display:flex;align-items:center;justify-content:center;gap:10px;
   font-weight:800;font-size:14.5px;color:var(--accent);
@@ -91,4 +87,4 @@ h1{margin:0;font-size:34px;line-height:1.15;font-weight:900;letter-spacing:-.8px
   .card{padding:20px;border-radius:22px}
   .hero{padding:28px 20px}
   h1{font-size:28px}
-          }
+  }
