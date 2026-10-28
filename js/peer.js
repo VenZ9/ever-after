@@ -35,19 +35,21 @@ function createHost() {
 function showLobby() {
   setScreen('lobby');
   const url = buildRoomUrl(state.roomCode);
-  document.getElementById('roomLink').value = url;
-  document.getElementById('codeDisplay').textContent = formatCodeDisplay(state.roomCode);
+  
+  // Display the single 6-letter code
+  document.getElementById('codeDisplay').textContent = state.roomCode;
 
-  QRCode.toDataURL(url, { width: 400, margin: 1, color: { dark: '#12303f', light: '#ffffff' } },
-    (err, dataUrl) => {
-      if (err) return;
-      const wrap = document.getElementById('qrWrap');
-      wrap.innerHTML = '';
-      const img = document.createElement('img');
-      img.src = dataUrl;
-      img.alt = 'Room QR code';
-      wrap.appendChild(img);
-    });
+  // Render QR code directly into the wrap div
+  const qrWrap = document.getElementById('qrWrap');
+  qrWrap.innerHTML = '';
+  new QRCode(qrWrap, {
+    text: url,
+    width: 180,
+    height: 180,
+    colorDark: "#12303f",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
 }
 
 function joinRoom(code) {
@@ -140,4 +142,4 @@ function sendToPeer(msg) {
   if (state.conn && state.conn.open) {
     try { state.conn.send(msg); } catch(e){}
   }
-    }
+                         }
