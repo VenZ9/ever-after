@@ -28,26 +28,28 @@ function initLanding() {
     const f = document.getElementById('joinForm');
     f.style.display = f.style.display === 'none' ? 'block' : 'none';
   });
-  document.getElementById('joinRoomBtn').addEventListener('click', () => {
-    const raw = document.getElementById('joinCodeInput').value.trim().toLowerCase();
-    const code = raw.replace(/\s+/g, '-');
-    if (code) joinRoom(code);
+  
+  // Force uppercase, letters and numbers only
+  document.getElementById('joinCodeInput').addEventListener('input', (e) => {
+    e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
   });
+
+  document.getElementById('joinRoomBtn').addEventListener('click', () => {
+    const code = document.getElementById('joinCodeInput').value.trim();
+    if (code.length === 6) {
+      joinRoom(code);
+    } else {
+      alert("Please enter a valid 6-letter code.");
+    }
+  });
+  
   document.getElementById('joinCodeInput').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') document.getElementById('joinRoomBtn').click();
   });
 }
 
 function initLobby() {
-  document.getElementById('copyLinkBtn').addEventListener('click', () => {
-    const inp = document.getElementById('roomLink');
-    inp.select();
-    try { navigator.clipboard.writeText(inp.value); } catch(e){}
-    const btn = document.getElementById('copyLinkBtn');
-    const old = btn.textContent;
-    btn.textContent = 'Copied';
-    setTimeout(() => { btn.textContent = old; }, 1200);
-  });
+  // Cleaned up: Copy Link button is removed from the UI
 }
 
 function updateMyProgress() {
@@ -103,4 +105,4 @@ function updatePeerUI() {
 function updateAllUI() {
   updateMyProgress();
   updatePeerUI();
-}
+    }
