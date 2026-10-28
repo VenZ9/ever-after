@@ -1,0 +1,84 @@
+/* Theme tokens + base body + topbar */
+
+:root{
+  --bg:#ddf4ff;
+  --surface:#ffffff;
+  --surface-2:#f5fbff;
+  --border:#d6ebf8;
+  --border-strong:#a9d7f2;
+  --text:#12303f;
+  --muted:#6b8b9c;
+  --accent:#1cb0f6;
+  --accent-dark:#0e8fc9;
+  --accent-soft:#e3f5ff;
+  --gold:#ffc800;
+  --ok:#58cc02;
+  --warn:#ffb020;
+  --bad:#ff4b4b;
+  --hand-fill:#eaf8ff;
+  --shadow:rgba(28,176,246,.16);
+  --overlay:rgba(6,32,48,.55);
+}
+[data-theme="dark"]{
+  --bg:#0f1a1f;
+  --surface:#1a2b33;
+  --surface-2:#16252c;
+  --border:#2b414d;
+  --border-strong:#3d5a6a;
+  --text:#eaf6ff;
+  --muted:#8fa9b8;
+  --accent-soft:#12303f;
+  --hand-fill:#16272f;
+  --shadow:rgba(0,0,0,.45);
+  --overlay:rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Nunito',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  transition:background .35s ease,color .35s ease;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(900px 620px at 8% -12%, rgba(255,255,255,.9), transparent 62%),
+    radial-gradient(760px 520px at 102% -4%, rgba(255,255,255,.7), transparent 58%),
+    radial-gradient(900px 700px at 50% 125%, rgba(28,176,246,.18), transparent 62%);
+  transition:opacity .35s;
+}
+[data-theme="dark"] body::before{
+  background:
+    radial-gradient(900px 620px at 8% -12%, rgba(28,176,246,.10), transparent 62%),
+    radial-gradient(760px 520px at 102% -4%, rgba(28,176,246,.07), transparent 58%);
+}
+.app{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+
+/* Top bar */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;max-width:1120px;width:100%;margin:0 auto;
+}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:20px;letter-spacing:-.3px}
+.brand svg{width:30px;height:30px;color:var(--accent)}
+.brand-name{color:var(--text)}
+.theme-btn{
+  width:48px;height:48px;border-radius:16px;border:2px solid var(--border);
+  background:var(--surface);color:var(--accent);cursor:pointer;
+  display:grid;place-items:center;
+  transition:transform .12s,border-color .2s,background .3s;
+  box-shadow:0 3px 0 var(--border);
+}
+.theme-btn:hover{border-color:var(--accent)}
+.theme-btn:active{transform:translateY(3px);box-shadow:none}
+.theme-btn svg{width:22px;height:22px}
+[data-theme="light"] .icon-moon{display:block}
+[data-theme="light"] .icon-sun{display:none}
+[data-theme="dark"] .icon-moon{display:none}
+[data-theme="dark"] .icon-sun{display:block}
