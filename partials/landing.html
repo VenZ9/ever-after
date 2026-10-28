@@ -1,0 +1,31 @@
+<section class="screen active" id="screen-landing">
+  <div class="hero card">
+    <svg class="hero-svg" viewBox="0 0 240 150" fill="none">
+      <circle cx="98" cy="82" r="46" stroke="var(--accent)" stroke-width="9"/>
+      <circle cx="142" cy="82" r="46" stroke="var(--accent)" stroke-width="9" opacity=".38"/>
+      <path d="M56 26l4.6 11.4L72 42l-11.4 4.6L56 58l-4.6-11.4L40 42l11.4-4.6z" fill="var(--gold)"/>
+      <path d="M186 22l3.4 8.6L198 34l-8.6 3.4L186 46l-3.4-8.6L174 34l8.6-3.4z" fill="var(--accent)" opacity=".55"/>
+      <circle cx="46" cy="112" r="5" fill="var(--accent)" opacity=".35"/>
+      <circle cx="200" cy="106" r="4" fill="var(--accent)" opacity=".3"/>
+    </svg>
+    <h1>Marry anywhere,<br>together.</h1>
+    <p>Create a private room, share the QR code or the 6‑word code, and complete your vows on both screens at the same moment.</p>
+    <button class="btn btn-primary" id="createRoomBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <rect x="3" y="3" width="7" height="7" rx="2"/>
+        <rect x="14" y="3" width="7" height="7" rx="2"/>
+        <rect x="3" y="14" width="7" height="7" rx="2"/>
+        <path d="M14 14h3v3h-3zM20 14v3M14 20h3M20 20v.01"/>
+      </svg>
+      Create a room
+    </button>
+    <button class="btn btn-ghost" id="showJoinBtn" style="margin-top:12px;width:100%;">
+      Join with a code
+    </button>
+    <div id="joinForm" style="display:none;margin-top:16px;">
+      <input id="joinCodeInput" class="text-input" placeholder="word-word-word-word-word-word"
+             style="text-align:center;margin-bottom:10px;" autocomplete="off" spellcheck="false" />
+      <button class="btn btn-primary" id="joinRoomBtn" style="width:100%;">Join room</button>
+    </div>
+  </div>
+</section>
