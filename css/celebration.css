@@ -1,0 +1,66 @@
+/* Celebration overlay, rings animation, certificate */
+
+.celebration{
+  position:fixed;inset:0;z-index:200;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;overflow:auto;
+  background:radial-gradient(1200px 800px at 50% 0%, #ffffff 0%, var(--bg) 55%, var(--bg) 100%);
+}
+[data-theme="dark"] .celebration{
+  background:radial-gradient(1200px 800px at 50% 0%, #16303c 0%, var(--bg) 60%, var(--bg) 100%);
+}
+.celebration[hidden]{display:none}
+
+#confetti{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;
+}
+
+.celebration-inner{
+  position:relative;z-index:2;text-align:center;
+  max-width:520px;width:100%;
+  animation:fadeUp .6s ease both;
+}
+
+.rings{
+  width:220px;height:auto;margin:0 auto 6px;display:block;overflow:visible;
+}
+.rings circle{transform-box:fill-box;transform-origin:center}
+.rings .ring-a{animation:ringLeft .95s cubic-bezier(.34,1.56,.64,1) both}
+.rings .ring-b{animation:ringRight .95s cubic-bezier(.34,1.56,.64,1) .12s both}
+
+@keyframes ringLeft{
+  from{transform:translateX(-70px) rotate(-45deg);opacity:0}
+  to{transform:none;opacity:1}
+}
+@keyframes ringRight{
+  from{transform:translateX(70px) rotate(45deg);opacity:0}
+  to{transform:none;opacity:1}
+}
+
+.celebration h1{
+  font-size:clamp(28px,6vw,42px);margin:8px 0 6px;letter-spacing:-1px;
+  animation:fadeUp .7s ease .25s both;
+}
+.celeb-sub{
+  color:var(--muted);font-weight:700;font-size:16px;margin:0 0 26px;
+  animation:fadeUp .7s ease .35s both;
+}
+
+.cert{
+  background:var(--surface);border:2px solid var(--border);border-radius:24px;
+  padding:26px 22px;box-shadow:0 12px 34px var(--shadow);
+  animation:fadeUp .7s ease .45s both;
+}
+.cert-names{
+  display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
+  font-size:clamp(19px,4.6vw,26px);font-weight:900;letter-spacing:-.4px;
+}
+.cert-amp{color:var(--gold);font-size:26px;line-height:1}
+
+.cert-meta{
+  margin-top:14px;padding-top:14px;border-top:1px dashed var(--border);
+  font-size:13.5px;font-weight:800;color:var(--muted);letter-spacing:.4px;
+  display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+}
+.cert-meta svg{width:16px;height:16px;color:var(--accent)}
