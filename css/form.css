@@ -1,0 +1,188 @@
+/* Form fields, signature canvas, fingerprint, date/time pickers, hand + bracelet, partner card */
+
+.field{margin-bottom:20px}
+.field:last-child{margin-bottom:0}
+.field-label{
+  display:block;font-size:12px;font-weight:900;letter-spacing:1.1px;
+  text-transform:uppercase;color:var(--muted);margin-bottom:9px;
+}
+.field-label.mt{margin-top:16px}
+
+.text-input{
+  width:100%;font-family:inherit;font-size:16px;font-weight:700;
+  padding:15px 17px;border-radius:16px;border:2px solid var(--border);
+  background:var(--surface-2);color:var(--text);outline:none;
+  transition:border-color .2s,background .3s;
+}
+.text-input::placeholder{color:var(--muted);opacity:.75;font-weight:600}
+.text-input:focus{border-color:var(--accent);background:var(--surface)}
+
+/* Signature */
+.sign-box{
+  position:relative;width:100%;height:170px;border-radius:20px;
+  border:2px dashed var(--border-strong);background:var(--surface-2);
+  overflow:hidden;transition:border-color .2s,background .3s;
+}
+.sign-box.signed{border-style:solid;border-color:var(--accent);background:var(--surface)}
+#signCanvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}
+.sign-ph{
+  position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;
+  color:var(--muted);font-weight:800;font-size:15px;letter-spacing:.4px;
+  opacity:.65;transition:opacity .25s;
+}
+.sign-box.signed .sign-ph{opacity:0}
+.mini-icon-btn{
+  position:absolute;top:9px;right:9px;width:34px;height:34px;border-radius:11px;
+  border:2px solid var(--border);background:var(--surface);color:var(--muted);
+  display:grid;place-items:center;cursor:pointer;transition:.18s;
+  opacity:0;pointer-events:none;
+}
+.sign-box.signed .mini-icon-btn{opacity:1;pointer-events:auto}
+.mini-icon-btn:hover{color:var(--bad);border-color:var(--bad)}
+.mini-icon-btn svg{width:16px;height:16px}
+
+/* Fingerprint */
+.field-row{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+.field-grow{flex:1;min-width:180px}
+.fingerprint-box{
+  position:relative;width:168px;aspect-ratio:1;border-radius:30px;
+  border:2px dashed var(--border-strong);background:var(--surface-2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  cursor:pointer;overflow:hidden;user-select:none;-webkit-tap-highlight-color:transparent;
+  transition:border-color .25s,background .3s,transform .1s;
+}
+.fingerprint-box:hover{border-color:var(--accent)}
+.fingerprint-box:active{transform:scale(.975)}
+.fingerprint-box.scanning{border-color:var(--accent)}
+.fingerprint-box.done{
+  border-style:solid;border-color:var(--accent);
+  background:var(--accent-soft);cursor:default;
+}
+.fp-rings{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .3s}
+.fp-rings span{
+  position:absolute;width:118px;height:118px;border-radius:50%;
+  border:2px solid var(--accent);opacity:0;
+  animation:ringIn 2.7s ease-out infinite;
+}
+.fp-rings span:nth-child(2){animation-delay:.9s}
+.fp-rings span:nth-child(3){animation-delay:1.8s}
+.fingerprint-box.scanning .fp-rings span{animation-duration:.55s}
+@keyframes ringIn{
+  0%{transform:scale(1.4);opacity:0}
+  15%{opacity:.5}
+  70%{opacity:.16}
+  100%{transform:scale(.3);opacity:0}
+}
+.fingerprint-box.done .fp-rings{opacity:0}
+.fp-icon{
+  width:82px;height:82px;color:var(--accent);opacity:0;transform:scale(.55);
+  transition:opacity .35s ease,transform .55s cubic-bezier(.34,1.56,.64,1);
+  position:relative;z-index:2;
+}
+.fp-icon svg{width:100%;height:100%;display:block}
+.fingerprint-box.done .fp-icon{opacity:1;transform:scale(1)}
+.fp-text{
+  position:relative;z-index:2;font-size:12px;font-weight:800;letter-spacing:.3px;
+  color:var(--muted);text-align:center;padding:0 10px;line-height:1.3;
+}
+.fingerprint-box.done .fp-text{color:var(--accent)}
+.fp-reset{
+  position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:9px;
+  border:2px solid var(--border-strong);background:var(--surface);color:var(--muted);
+  display:none;place-items:center;cursor:pointer;z-index:3;
+}
+.fingerprint-box.done .fp-reset{display:grid}
+.fp-reset svg{width:13px;height:13px}
+
+/* Date / Time pickers */
+.pick-box{
+  position:relative;display:flex;align-items:center;gap:12px;
+  padding:13px 16px;border-radius:16px;border:2px solid var(--border);
+  background:var(--surface-2);cursor:pointer;
+  transition:border-color .2s,background .3s;user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.pick-box:hover{border-color:var(--accent)}
+.pick-box.filled{border-color:var(--accent);background:var(--surface)}
+.pick-icon{width:20px;height:20px;color:var(--accent);flex:none}
+.pick-value{font-weight:800;font-size:15px;color:var(--muted)}
+.pick-box.filled .pick-value{color:var(--text)}
+.pick-input{
+  position:absolute;inset:0;width:100%;height:100%;opacity:0;
+  border:0;padding:0;margin:0;cursor:pointer;pointer-events:none;
+}
+
+/* Hand + bracelet */
+.hand-card .card-head{margin-bottom:4px}
+.stage{
+  position:relative;width:100%;max-width:290px;margin:14px auto 0;
+  aspect-ratio:200/250;touch-action:none;
+}
+.hand-svg{width:100%;height:100%;display:block;overflow:visible}
+.hand-part{fill:var(--hand-fill);stroke:var(--accent);stroke-width:3.5;stroke-linejoin:round}
+
+.bracelet{
+  position:absolute;width:38%;transform:translate(-50%,-50%);
+  cursor:grab;touch-action:none;z-index:4;
+  transition:left .34s cubic-bezier(.34,1.56,.64,1),top .34s cubic-bezier(.34,1.56,.64,1),filter .3s;
+  filter:drop-shadow(0 6px 10px rgba(28,176,246,.35));
+}
+.bracelet svg{width:100%;height:auto;display:block;overflow:visible}
+.bracelet.dragging{
+  cursor:grabbing;transition:none;
+  filter:drop-shadow(0 14px 18px rgba(28,176,246,.45));
+}
+.bracelet.worn{
+  cursor:default;
+  filter:drop-shadow(0 3px 6px rgba(28,176,246,.4));
+}
+.bracelet.worn .gem{animation:gemPop .55s cubic-bezier(.34,1.56,.64,1)}
+@keyframes gemPop{
+  0%{transform:scale(.4)}
+  60%{transform:scale(1.25)}
+  100%{transform:scale(1)}
+}
+
+/* Partner card */
+.partner-card .card-head{margin-bottom:10px}
+.status{
+  font-size:14.5px;font-weight:800;line-height:1.5;margin:0 0 16px;
+  color:var(--text);min-height:44px;
+}
+.status.is-wait{color:var(--accent)}
+.status.is-bad{color:var(--bad)}
+.status.is-ok{color:var(--ok)}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--muted);flex:none;transition:background .3s}
+.dot.live{background:var(--ok);animation:pulse 1.8s infinite}
+.dot.wait{background:var(--warn);animation:pulse 1.8s infinite}
+.dot.bad{background:var(--bad)}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(88,204,2,.5)}
+  70%{box-shadow:0 0 0 10px rgba(88,204,2,0)}
+  100%{box-shadow:0 0 0 0 rgba(88,204,2,0)}
+}
+.peer-progress{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.bar{
+  flex:1;height:12px;border-radius:99px;background:var(--surface-2);
+  border:2px solid var(--border);overflow:hidden;
+}
+.bar-fill{
+  height:100%;width:0%;background:var(--accent);border-radius:99px;
+  transition:width .4s cubic-bezier(.4,0,.2,1);
+}
+.pill{
+  font-size:12px;font-weight:900;letter-spacing:.4px;padding:6px 12px;
+  border-radius:99px;background:var(--accent-soft);color:var(--accent);
+  white-space:nowrap;
+}
+
+/* Responsive */
+@media (max-width:880px){
+  .stage{max-width:250px}
+}
+@media (max-width:520px){
+  .fingerprint-box{width:138px;border-radius:26px}
+  .fp-icon{width:66px;height:66px}
+  .field-row{gap:14px}
+  .sign-box{height:145px}
+  }
