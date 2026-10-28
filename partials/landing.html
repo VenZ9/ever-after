@@ -9,7 +9,7 @@
       <circle cx="200" cy="106" r="4" fill="var(--accent)" opacity=".3"/>
     </svg>
     <h1>Marry anywhere,<br>together.</h1>
-    <p>Create a private room, share the QR code or the 6‑word code, and complete your vows on both screens at the same moment.</p>
+    <p>Create a private room, share the QR code or the 6‑letter code, and complete your vows on both screens at the same moment.</p>
     <button class="btn btn-primary" id="createRoomBtn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
         <rect x="3" y="3" width="7" height="7" rx="2"/>
@@ -23,8 +23,9 @@
       Join with a code
     </button>
     <div id="joinForm" style="display:none;margin-top:16px;">
-      <input id="joinCodeInput" class="text-input" placeholder="word-word-word-word-word-word"
-             style="text-align:center;margin-bottom:10px;" autocomplete="off" spellcheck="false" />
+      <input id="joinCodeInput" class="text-input" placeholder="XXXXXX"
+             style="text-align:center;margin-bottom:10px;text-transform:uppercase;letter-spacing:6px;font-size:22px;"
+             autocomplete="off" spellcheck="false" maxlength="6" />
       <button class="btn btn-primary" id="joinRoomBtn" style="width:100%;">Join room</button>
     </div>
   </div>
